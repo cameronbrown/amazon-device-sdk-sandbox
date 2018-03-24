@@ -1,0 +1,6 @@
+[submodule "third-party/kittai/snowboy"]
+	path = third-party/kittai/snowboy
+	url = git@github.com:Kitt-AI/snowboy.git
+[submodule "sdk-source/avs-device-sdk"]
+	path = sdk-source/avs-device-sdk
+	url = git://github.com/alexa/avs-device-sdk.git

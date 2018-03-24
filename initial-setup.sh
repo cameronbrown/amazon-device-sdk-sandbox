@@ -1,7 +1,11 @@
 #!/bin/sh
 
-(cd sdk-source; git git@github.com:alexa/avs-device-sdk.git avs-device-sdk)
-(cd third-party/kittai; git git@github.com:Kitt-AI/snowboy.git snowboy)
+# load submodules
+echo "initializing submodules..."
+git submodule init
+echo
+echo "loading submodules..."
+git submodule update
 
 if [ ! -f avs-security-profile ];  then
 cat >avs-security-profile <<EOF
