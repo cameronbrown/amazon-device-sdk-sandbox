@@ -1,0 +1,6 @@
+avs-security-profile
+AlexaClientSDKConfig.json
+application-necessities/alerts.db
+application-necessities/certifiedSender.db
+application-necessities/notifications.db
+application-necessities/settings.db
