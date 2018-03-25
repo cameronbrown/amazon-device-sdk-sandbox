@@ -1,5 +1,8 @@
 # Amazon Device SDK Sandbox
 
+In addition to the following instructions, it may also be useful
+to read the Alexa Device SDK [MacOS Quick Start Guide](https://github.com/alexa/avs-device-sdk/wiki/macOS-Quick-Start-Guide)
+
 ## Assumptions
 
 These instructions and scripts are for Mac OS X. They likely won't work exactly right elsewhere, but may be close.
@@ -44,14 +47,29 @@ These instructions and scripts are for Mac OS X. They likely won't work exactly 
 
 ### Configure the build
 
-`./config-sample-app.sh`
+* Once your security profile values are filled in, configure the sample app.  This will create the file `AlexaClientSDKConfig.json` which will be copied into the build directory during build.
+
+    `./config-sample-app.sh`
+
+* Review and edit the values in this file if desired.
 
 ### Build
 
-`./build-sample-app.sh`
+* Build the sample app
+
+    `./build-sample-app.sh`
+
+* After building, this script will run a local web server to help acquire a current refresh token for the app. You must open a browser to <http://localhost:3000> and log in with your Amazon credentials to get the token. More Info [here](https://github.com/alexa/avs-device-sdk/wiki/macOS-Quick-Start-Guide#33-obtain-a-refresh-token).
 
 ### Try it out
 
-`./run-sample-app.sh`
+* Run the sample app
+
+    `./run-sample-app.sh`
 
 ## Make your own custom wake-word
+
+* Go to <https://snowboy.kitt.ai>
+* Create and download a .pmdl file
+* Save it to application-necessities/snowboy-kwd/alexa.umdl
+* It may necessary to adjust `KITT_AI_SENSITIVITY` in [SampleApp/src/SampleApplication.cpp:93](sdk-source/avs-device-sdk/SampleApp/src/SampleApplication.cpp)
