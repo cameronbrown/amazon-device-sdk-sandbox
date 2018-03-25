@@ -4,7 +4,16 @@ absdirpath() {
     echo $(cd "$1"; pwd -P)
 }
 
-BUILD_DIR="${1:-sdk-build}"
+# BUILD_DIR can be a relative or absolute path
+# if relative, then make it relative to sdk-build
+# if not specified, defaults to "sdk-build/avs-device-sdk" if not specified
+BUILD_DIR="${1:-sdk-build/avs-device-sdk}"
+if [[ "${BUILD_DIR}" != /* ]] && [[ "${BUILD_DIR}" != sdk-build/* ]]; then
+    # make it relative to sdk-build
+    BUILD_DIR="sdk-build/${BUILD_DIR}"
+fi
+echo "Building in ${BUILD_DIR}"
+
 SDK_SOURCE_DIR="$(absdirpath sdk-source/avs-device-sdk)"
 
 BUILD_TYPE=DEBUG
@@ -20,7 +29,7 @@ KITTAI_BASE_DIR="$(absdirpath third-party/kittai)"
 KITTAI_KWD_INCLUDE_DIR="$KITTAI_BASE_DIR/snowboy/include"
 KITTAI_KWD_LIB_PATH="$KITTAI_BASE_DIR/snowboy/lib/osx/libsnowboy-detect.a"
 
-[ -d "${BUILD_DIR}" ] || mkdir "${BUILD_DIR}"
+[ -d "${BUILD_DIR}" ] || mkdir -p "${BUILD_DIR}"
 
 (cd "${BUILD_DIR}" && cmake "${SDK_SOURCE_DIR}" \
     -DCMAKE_BUILD_TYPE="${BUILD_TYPE}" \
